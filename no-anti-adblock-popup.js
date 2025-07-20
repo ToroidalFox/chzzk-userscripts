@@ -4,7 +4,7 @@
 // @description Removes Anti-Adblock Popups from CHZZK Streaming Platform
 // @version 0.1
 // @license MIT
-// @supportURL https://github.com/ToroidalFox/chzzk-userscripts
+// @supportURL https://github.com/ToroidalFox/chzzk-userscripts/issues
 // @match https://chzzk.naver.com/*
 // @grant none
 // ==/UserScript==
