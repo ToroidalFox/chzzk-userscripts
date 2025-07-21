@@ -13,7 +13,7 @@
   "use strict";
 
   const body = document.body;
-  const popup_observer = new MutationObserver(delete_adblock_popup);
+  const popup_observer = new MutationObserver(delete_anti_adblock_popup);
   const observer_options = {
     childList: true,
   };
@@ -22,7 +22,7 @@
    * @param {MutationRecord[]} records
    * @param {MutationObserver} observer
    */
-  function delete_adblock_popup(records, observer) {
+  function delete_anti_adblock_popup(records, observer) {
     for (const record of records) {
       for (const _added_node of record.addedNodes) {
         if (_added_node.nodeType != Node.ELEMENT_NODE) {
@@ -51,6 +51,6 @@
     popup_observer.observe(body, observer_options);
   }
 
-  // initial observer
+  // initiate observer
   popup_observer.observe(body, observer_options);
 })();
