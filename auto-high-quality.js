@@ -2,7 +2,7 @@
 // @name CHZZK Auto High Quality
 // @author ToroidalFox
 // @description Selects High Quality Automatically from CHZZK Streaming Platform
-// @version 0.1
+// @version 0.2
 // @license MIT
 // @supportURL https://github.com/ToroidalFox/chzzk-userscripts/issues
 // @updateURL https://raw.githubusercontent.com/ToroidalFox/chzzk-userscripts/refs/heads/master/auto-high-quality.js
@@ -65,8 +65,6 @@
         if (_added_node.nodeType != Node.ELEMENT_NODE) {
           return;
         }
-        /** @type {Element} */
-        const added_node = _added_node;
 
         // HACK: fuck it, I can't figure out a clean solution. Using setTimeout.
         if (timeout != null) {
@@ -99,13 +97,28 @@
     }
   }
 
+  /**
+   * @param {string} pathname
+   * @returns boolean
+   */
+  function is_path_eligible(pathname) {
+    const top_level_path = pathname.split('/').filter(Boolean)[0];
+    const whitelist= ["live"];
+    return whitelist.includes(top_level_path)
+  }
+
   const original_pushState = history.pushState;
   // overriding pushState to detect url changes
   history.pushState = function(...args) {
     original_pushState.apply(this, args);
-    // re-enable observer
-    observer.observe(layout_body, observer_options);
+    if (is_path_eligible(args[2])) {
+      // re-enable observer
+      observer.observe(layout_body, observer_options);
+    }
   }
 
-  observer.observe(layout_body, observer_options);
+  if (is_path_eligible(window.location.pathname)) {
+    // initiate observer
+    observer.observe(layout_body, observer_options);
+  }
 })();
