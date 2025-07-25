@@ -103,7 +103,7 @@
    */
   function is_path_eligible(pathname) {
     const top_level_path = pathname.split('/').filter(Boolean)[0];
-    const whitelist= ["live"];
+    const whitelist= ["live", "video"];
     return whitelist.includes(top_level_path)
   }
 
