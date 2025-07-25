@@ -2,7 +2,7 @@
 // @name CHZZK Auto High Quality
 // @author ToroidalFox
 // @description Selects High Quality Automatically from CHZZK Streaming Platform
-// @version 0.2
+// @version 0.2.1
 // @license MIT
 // @supportURL https://github.com/ToroidalFox/chzzk-userscripts/issues
 // @updateURL https://raw.githubusercontent.com/ToroidalFox/chzzk-userscripts/refs/heads/master/auto-high-quality.js
