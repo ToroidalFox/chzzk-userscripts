@@ -2,7 +2,7 @@
 // @name CHZZK No Anti-Adblock Popup
 // @author ToroidalFox
 // @description Removes Anti-Adblock Popups from CHZZK Streaming Platform
-// @version 0.2
+// @version 0.3
 // @license MIT
 // @supportURL https://github.com/ToroidalFox/chzzk-userscripts/issues
 // @updateURL https://raw.githubusercontent.com/ToroidalFox/chzzk-userscripts/refs/heads/master/no-anti-adblock-popup.js
@@ -37,8 +37,16 @@
         if (
           Array.prototype.find.call(added_node.classList, /** @param {String} s */s => s.startsWith("popup_dimmed"))
         ) {
-          const anti_adblock_popup = added_node.querySelector("div[class^=\"popup_container\"]");
-          if (anti_adblock_popup != null) anti_adblock_popup.remove();
+          added_node.style.display = "none";
+          const button = added_node.querySelector("button");
+          if (button === null) {
+            console.error("button not found");
+          }
+          const props_key = Object.keys(button).find(s => s.startsWith("__reactProps"));
+          if (button === null) {
+            console.error("props_key not found");
+          }
+          button[props_key].onClick({ isTrusted: true });
           observer.disconnect(); // disable observer once deleted, will be re-enabled by code below
         }
       }
@@ -51,7 +59,7 @@
    */
   function is_path_eligible(pathname) {
     const top_level_path = pathname.split('/').filter(Boolean)[0];
-    const whitelist= ["live", "video"];
+    const whitelist = ["live", "video"];
     return whitelist.includes(top_level_path)
   }
 

@@ -2,7 +2,7 @@
 // @name CHZZK Auto High Quality
 // @author ToroidalFox
 // @description Selects High Quality Automatically from CHZZK Streaming Platform
-// @version 0.2.1
+// @version 0.3
 // @license MIT
 // @supportURL https://github.com/ToroidalFox/chzzk-userscripts/issues
 // @updateURL https://raw.githubusercontent.com/ToroidalFox/chzzk-userscripts/refs/heads/master/auto-high-quality.js
@@ -70,7 +70,7 @@
         if (timeout != null) {
           clearTimeout(timeout);
         }
-        timeout = setTimeout(set_highest_quality, 10, observer);
+        timeout = setTimeout(set_highest_quality, 100, observer);
       }
       for (const _removed_node of record.addedNodes) {
         if (_removed_node.nodeType != Node.ELEMENT_NODE) {
@@ -80,7 +80,7 @@
         if (timeout != null) {
           clearTimeout(timeout);
         }
-        timeout = setTimeout(set_highest_quality, 10, observer);
+        timeout = setTimeout(set_highest_quality, 100, observer);
       }
     }
   }
@@ -103,7 +103,7 @@
    */
   function is_path_eligible(pathname) {
     const top_level_path = pathname.split('/').filter(Boolean)[0];
-    const whitelist= ["live", "video"];
+    const whitelist = ["live", "video"];
     return whitelist.includes(top_level_path)
   }
 
