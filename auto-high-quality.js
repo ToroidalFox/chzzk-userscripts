@@ -2,7 +2,7 @@
 // @name CHZZK Auto High Quality
 // @author ToroidalFox
 // @description Selects High Quality Automatically from CHZZK Streaming Platform
-// @version 0.3
+// @version 0.4
 // @license MIT
 // @supportURL https://github.com/ToroidalFox/chzzk-userscripts/issues
 // @updateURL https://raw.githubusercontent.com/ToroidalFox/chzzk-userscripts/refs/heads/master/auto-high-quality.js
@@ -14,7 +14,7 @@
 (function() {
   "use strict";
 
-  const layout_body = document.querySelector("div#layout-body");
+  const root = document.querySelector("div#root");
   const observer = new MutationObserver(get_selector_pane);
   const observer_options = {
     subtree: true,
@@ -113,12 +113,12 @@
     original_pushState.apply(this, args);
     if (is_path_eligible(args[2])) {
       // re-enable observer
-      observer.observe(layout_body, observer_options);
+      observer.observe(root, observer_options);
     }
   }
 
   if (is_path_eligible(window.location.pathname)) {
     // initiate observer
-    observer.observe(layout_body, observer_options);
+    observer.observe(root, observer_options);
   }
 })();
